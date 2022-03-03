@@ -189,7 +189,7 @@ USE_TZ = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 EMAIL_HOST = 'smtp.sendgrid.net'
