@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bvn9_)l7a6vcmboxrq*w@%0!u!xotf@!q-$_psv-t5g1p+b+gp'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -189,7 +189,7 @@ USE_TZ = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 EMAIL_HOST = 'smtp.sendgrid.net'
@@ -219,9 +219,9 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dtdf8rlzb',
-    'API_KEY': '429398995622691',
-    'API_SECRET': '5i6c2qGz_2ckjO5rQnpgbqPDThc',
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
