@@ -189,12 +189,12 @@ USE_TZ = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# Add send-grid api key
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST_PASSWORD = # Add send-grid api key
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 SENDGRID_ECHO_TO_STDOUT = False
 EMAIL_PORT = 587
