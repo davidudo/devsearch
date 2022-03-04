@@ -1,7 +1,7 @@
 # <img width="100%" height="auto" src="./static/images/logo.svg">
 Source code and Resources for Devsearch
 
-Check out the live demo here: https://studybudweb.herokuapp.com/
+Check out the live demo here: https://devsearch.herokuapp.com/
 
 
 # Installation
