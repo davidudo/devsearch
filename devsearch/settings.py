@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import cloudinary
 import cloudinary_storage
+import environ
 
 from datetime import timedelta
 from pathlib import Path
@@ -19,17 +20,20 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY') or env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'devsearchweb.herokuapp.com']
+ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', 'onrender.com']
 
 
 # Application definition
@@ -150,6 +154,11 @@ DATABASES = {
     }
 }
 
+"""import dj_database_url 
+prod_db  =  dj_database_url.config('postgres://studybud_user:hB4C47DFcnaxSdrM4ggkG1clffBRiNgE@dpg-ceongapgp3jlcsk7k9r0-a/studybud', conn_max_age=500)
+DATABASES['default'].update(prod_db)"""
+
+
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -186,25 +195,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 CORS_ALLOW_ALL_ORIGINS = True
-
-#***********************
-# Add send-grid api key
-#***********************
-
-# UNCOMMENT THIS WHEN YOU CLONE IT
-
-"""EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = # Add send-grid api key
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-SENDGRID_ECHO_TO_STDOUT = False
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'udodavidcontact@gmail.com'"""
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -223,9 +214,9 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-    'API_KEY': os.getenv('API_KEY'),
-    'API_SECRET': os.getenv('API_SECRET'),
+    'CLOUD_NAME': os.getenv('CLOUD_NAME') or env('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY') or env('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET') or env('API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -237,3 +228,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if os.getcwd() == '/app':
   DEBUG = False
+
+
+# ADD SENDGRID API KEY
+
+# UNCOMMENT THIS WHEN YOU CLONE IT
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY') or env('SENDGRID_API_KEY')
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+SENDGRID_ECHO_TO_STDOUT = False
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'udodavidcontact@gmail.com'
+LOGIN_REDIRECT_URL = 'success'
