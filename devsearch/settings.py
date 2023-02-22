@@ -31,7 +31,7 @@ environ.Env.read_env()
 SECRET_KEY = os.getenv('SECRET_KEY') or env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', 'onrender.com']
 
@@ -135,32 +135,29 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-"""DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USERNAME': 'davidudo',
-        'PASSWORD': 'Deanbolt3717*',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}"""
-
+DATABASE_URL="postgres://udodavid46.ud:fylJ1Hwkv5jV@ep-calm-night-915769.us-east-2.aws.neon.tech/devsearch"
 
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'devsearch',
+        'USER': 'udodavid46.ud',
+        'PASSWORD': 'fylJ1Hwkv5jV',
+        'HOST': 'ep-calm-night-915769.us-east-2.aws.neon.tech',
+        'PORT': '5432',
+    }
+}
+
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
-
-"""import dj_database_url 
-prod_db  =  dj_database_url.config('postgres://studybud_user:hB4C47DFcnaxSdrM4ggkG1clffBRiNgE@dpg-ceongapgp3jlcsk7k9r0-a/studybud', conn_max_age=500)
-DATABASES['default'].update(prod_db)"""
-
+}"""
 
 import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
+db_from_env = dj_database_url.config(conn_max_age=0)
 DATABASES['default'].update(db_from_env)
 
 # Password validation
