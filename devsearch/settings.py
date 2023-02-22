@@ -135,14 +135,14 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASE_URL="postgres://udodavid46.ud:fylJ1Hwkv5jV@ep-calm-night-915769.us-east-2.aws.neon.tech/devsearch"
+DATABASE_URL="postgres://udodavid46.ud:bZ6F9xsYJpSN@ep-calm-night-915769.us-east-2.aws.neon.tech/devsearch"
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'devsearch',
         'USER': 'udodavid46.ud',
-        'PASSWORD': 'fylJ1Hwkv5jV',
+        'PASSWORD': 'bZ6F9xsYJpSN',
         'HOST': 'ep-calm-night-915769.us-east-2.aws.neon.tech',
         'PORT': '5432',
     }
